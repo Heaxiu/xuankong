@@ -47,6 +47,20 @@ jobs:
       - name: Grant Gradle execute permission
         run: chmod +x android/gradlew
 
+      - name: Fix Kotlin stdlib duplicate classes
+        run: |
+          # 在 android/app/build.gradle 添加依赖解析策略，强制统一 kotlin-stdlib 版本
+          cat >> android/app/build.gradle << 'EOF'
+
+          configurations.all {
+              resolutionStrategy {
+                  force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+                  force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+                  force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+              }
+          }
+          EOF
+
       - name: Build Debug APK
         run: |
           cd android
