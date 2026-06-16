@@ -1,0 +1,13 @@
+{
+  "appId": "com.heaxiu.xuankong",
+  "appName": "玄空飞星",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "buildOptions": {
+      "releaseType": "APK"
+    }
+  }
+}
